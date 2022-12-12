@@ -3,4 +3,4 @@
  * 
  * @author Antonio Tarricone
  */
-package it.gov.pagopa.swclient.mil.__service_name__.dao;
+package it.gov.pagopa.swclient.mil.wallet.dao;

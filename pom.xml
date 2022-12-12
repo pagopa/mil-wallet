@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>it.gov.pagopa.swclient.mil</groupId>
-	<artifactId>__service_name__</artifactId>
+	<artifactId>wallet</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	
-	<description>__service_name__description__</description>
+	<description>Wallet Microservice for Multi-channel Integration Layer of SW Client Project</description>
 	
 	<properties>
 		<java.version>17</java.version>
@@ -27,7 +27,7 @@
 		
 		<skipITs>true</skipITs>
 		
-		<common.version>__service_name__common_version__</common.version>
+		<common.version>1.0.2</common.version>
 	</properties>
 	
 	<dependencyManagement>
