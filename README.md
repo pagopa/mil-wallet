@@ -1,4 +1,4 @@
-# Multi-channel Integration Layer Wallet
+# Multi-channel Integration Layer - Wallet
 Wallet Microservice for Multi-channel Integration Layer of SW Client Project.
 
 ## Dependencies
