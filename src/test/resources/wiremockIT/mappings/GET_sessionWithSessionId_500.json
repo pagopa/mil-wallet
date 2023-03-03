@@ -1,0 +1,19 @@
+{
+	"priority":2,
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/sessions/c0c444e6-97da-4848-b568-99fedccb642c",
+		"headers": {
+		  "AcquirerId": {
+			"equalTo": "1111111"
+		  }
+		}
+    },
+    "response": {
+        "status": 500,
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

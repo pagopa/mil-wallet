@@ -1,0 +1,11 @@
+{
+	"priority": 1,
+    "request": {
+        "method": "PATCH",
+        "urlPathPattern": "/sessions/a0b222e7-97da-3843-b568-99fedccb643f"
+    },
+    "response": {
+        "status": 500
+    }
+}
+

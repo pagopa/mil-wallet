@@ -1,0 +1,16 @@
+{
+    "request": {
+        "method": "PUT",
+        "url": "/tokens"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "token": "XYZ13243XXYYZZ"
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

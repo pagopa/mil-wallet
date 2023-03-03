@@ -1,0 +1,17 @@
+{	"priority":1,
+    "request": {
+        "method": "POST",
+        "url": "/closepayment",
+		
+		"bodyPatterns" : [
+				{"matchesJsonPath" : "$[?(@.paymentMethod == 'CASH')]"}
+		]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": { 
+			"outcome":"OK"
+		}
+        
+    }
+}

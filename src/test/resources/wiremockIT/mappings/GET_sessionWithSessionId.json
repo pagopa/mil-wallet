@@ -1,0 +1,18 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/sessions/(.*)"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "outcome": "TERMS_AND_CONDITIONS_NOT_YET_ACCEPTED",
+					  "taxCode": "CHCZLN73D08A662B",
+					  "saveNewCards": true
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

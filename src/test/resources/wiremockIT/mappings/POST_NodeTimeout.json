@@ -1,0 +1,14 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/closepayment"
+    },
+    "response": {
+        "status": 200,
+        "body": "Timeout",
+        "chunkedDribbleDelay": {
+            "numberOfChunks": 5,
+            "totalDuration": 3000000
+        }
+    }
+}

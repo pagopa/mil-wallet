@@ -1,0 +1,15 @@
+{
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/acceptedTermsConds/(.*)"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "outcome": "OK"
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

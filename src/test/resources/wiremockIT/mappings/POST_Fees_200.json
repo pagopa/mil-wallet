@@ -1,0 +1,25 @@
+{	
+    "request": {
+        "method": "POST",
+        "url": "/fees"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody":  [{ 
+			"taxPayerFee":1236,
+			"primaryCiIncurredFee" : 7875,
+			"paymentMethod": "CASH",
+			"touchpoint": "CASH",
+			"idBundle": "243564",
+			"bundleName": "test",
+			"bundleDescription": "test",
+			"idCiBundle": "3256435",
+			"idPsp": "243502398"
+		
+		}],
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+        
+    }
+}

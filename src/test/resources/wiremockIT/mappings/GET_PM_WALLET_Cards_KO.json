@@ -1,0 +1,13 @@
+{	"priority" : 1,
+    "request": {
+        "method": "POST",
+        "urlPathPattern": "/cards",
+           "bodyPatterns" : [ {
+              "equalToJson" : { "panToken": "00001111", "taxCode": "DDCZLN73D08A662B" }
+           } ]
+    },
+    "response": {
+        "status": 200
+        
+    }
+}

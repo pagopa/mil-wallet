@@ -1,0 +1,17 @@
+{
+	"priority": 2,
+    "request": {
+        "method": "POST",
+        "url": "/closepayment",
+		
+		"bodyPatterns" : [
+				{"matchesJsonPath" : "$[?(@.paymentMethod == 'PAGOBANCOMAT')]"}
+		]
+
+    },
+    "response": {
+        "status": 408
+        
+    }
+}
+
