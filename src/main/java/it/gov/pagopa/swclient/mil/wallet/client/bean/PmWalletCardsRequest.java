@@ -48,7 +48,7 @@ public class PmWalletCardsRequest {
 		builder.append("PmWalletCardsRequest [taxCode=");
 		builder.append(taxCode);
 		builder.append(", panToken=");
-		builder.append(panToken);
+		builder.append("***");
 		builder.append("]");
 		return builder.toString();
 	}

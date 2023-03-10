@@ -69,7 +69,7 @@ public class SessionResponse {
 		builder.append("SessionResponse [outcome=");
 		builder.append(outcome);
 		builder.append(", taxCode=");
-		builder.append(taxCode);
+		builder.append("***");
 		builder.append(", saveNewCards=");
 		builder.append(saveNewCards);
 		builder.append("]");

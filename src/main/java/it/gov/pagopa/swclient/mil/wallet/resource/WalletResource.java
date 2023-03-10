@@ -49,14 +49,14 @@ public class WalletResource {
 	@POST
 	@Path("/cards")
 	public Uni<Response> cards(@Valid @BeanParam WalletHeaderParams headers, @Valid WalletRequest walletRequest) {
-		Log.debugf("cards - Input parameters: %s, panToken: %s", headers, walletRequest.getPanToken());
+		Log.debugf("cards - Input parameters: %s, wallet request: %s", headers, walletRequest.toString());
 		return sessionService.getSessionById(headers.getSessionId(), headers).onFailure()
 		.transform(f -> {
 			if (f instanceof ClientWebApplicationException c) {
-				Log.errorf(f, "[%s] Error while retrieving session. Http Status code [%s] " , ErrorCode.ERROR_SESSION_NOT_FOUND_SERVICE,c.getResponse().getStatus()) ;
+				Log.errorf(f, "[%s] Error while retrieving session. Http Status code [%s] " , ErrorCode.SESSION_NOT_FOUND_ERROR,c.getResponse().getStatus()) ;
 				return new BadRequestException(Response
 						.status(Status.BAD_REQUEST)
-						.entity(new Errors(List.of(ErrorCode.ERROR_SESSION_NOT_FOUND_SERVICE)))
+						.entity(new Errors(List.of(ErrorCode.SESSION_NOT_FOUND_ERROR)))
 						.build());
 			} else {
 				Log.errorf(f, "[%s] Error while retrieving session ", ErrorCode.ERROR_CALLING_SESSION_SERVICE);
@@ -67,19 +67,20 @@ public class WalletResource {
 			}
 		})
 		.chain (s -> {
+			Log.debugf("cards - Session response %s", s.toString());
 			if (Outcome.TERMS_AND_CONDITIONS_NOT_YET_ACCEPTED.toString().equals(s.getOutcome())) {
-				Log.errorf("[%s] The terms and conditions are not yet accepted ", ErrorCode.ERROR_TC_NOT_YET_ACCEPTED);
+				Log.errorf("[%s] The terms and conditions are not yet accepted ", ErrorCode.TC_NOT_YET_ACCEPTED_ERROR);
 				return Uni.createFrom().item(Response
 						.status(Status.BAD_REQUEST)
-						.entity(new Errors(List.of(ErrorCode.ERROR_TC_NOT_YET_ACCEPTED)))
+						.entity(new Errors(List.of(ErrorCode.TC_NOT_YET_ACCEPTED_ERROR)))
 						.build());
 				
 			} else {
 				if (Boolean.FALSE.equals(s.getSaveNewCards())) {
-					Log.errorf("[%s] Save cards is not active ", ErrorCode.ERROR_SAVE_CARD_NOT_ACTIVE);
+					Log.errorf("[%s] Save cards is not active ", ErrorCode.SAVE_CARD_NOT_ACTIVE_ERROR);
 					return Uni.createFrom().item(Response
 							.status(Status.BAD_REQUEST)
-							.entity(new Errors(List.of(ErrorCode.ERROR_SAVE_CARD_NOT_ACTIVE)))
+							.entity(new Errors(List.of(ErrorCode.SAVE_CARD_NOT_ACTIVE_ERROR)))
 							.build());
 				} else {
 					Log.debug("Calling PM-Wallet");
@@ -102,6 +103,7 @@ public class WalletResource {
 		PmWalletCardsRequest body = new PmWalletCardsRequest();
 		body.setPanToken(panToken);
 		body.setTaxCode(taxCode);
+		Log.debugf("cards - Calling te PM-Wallet to Pre-save a payment card in the Wallet %s", body.toString());
 		return pmWalletService.cards(version, body)
 			.onFailure().transform(t-> 
 			{
@@ -115,7 +117,7 @@ public class WalletResource {
 				if (f.getStatus() != Status.NO_CONTENT.getStatusCode()) {
 				return Response
 						.status(Status.INTERNAL_SERVER_ERROR)
-						.entity(new Errors(List.of(ErrorCode.ERROR_GENERIC_CALLING_PM_WALLET_SERVICE)))
+						.entity(new Errors(List.of(ErrorCode.GENERIC_ERROR_CALLING_PM_WALLET_SERVICE)))
 						.build();
 				} else {
 					return f;

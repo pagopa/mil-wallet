@@ -120,7 +120,7 @@ class WalletResourceTest {
 	
 		
 	    Assertions.assertEquals(400, response.statusCode());
-	    Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.ERROR_SESSION_NOT_FOUND_SERVICE));
+	    Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.SESSION_NOT_FOUND_ERROR));
 	}
 	
 	@Test
@@ -194,7 +194,7 @@ class WalletResourceTest {
 				.response();
 			
 	        Assertions.assertEquals(400, response.statusCode());
-	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.ERROR_TC_NOT_YET_ACCEPTED));
+	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.TC_NOT_YET_ACCEPTED_ERROR));
 	}
 	
 	@Test
@@ -237,7 +237,7 @@ class WalletResourceTest {
 				.response();
 			
 	        Assertions.assertEquals(400, response.statusCode());
-	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.ERROR_SAVE_CARD_NOT_ACTIVE));
+	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.SAVE_CARD_NOT_ACTIVE_ERROR));
 	}
 	
 	@Test
@@ -323,7 +323,7 @@ class WalletResourceTest {
 				.response();
 			
 	        Assertions.assertEquals(500, response.statusCode());
-	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.ERROR_GENERIC_CALLING_PM_WALLET_SERVICE));
+	        Assertions.assertTrue(response.jsonPath().getList("errors").contains(ErrorCode.GENERIC_ERROR_CALLING_PM_WALLET_SERVICE));
 	}
 	
 
