@@ -1,6 +1,6 @@
-package it.gov.pagopa.swclient.mil.wallet.client.bean;
+package it.pagopa.swclient.mil.wallet.client.bean;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class SessionResponse {
 	/*

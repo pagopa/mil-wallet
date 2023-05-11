@@ -1,15 +1,14 @@
-package it.gov.pagopa.swclient.mil.wallet.client;
-
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
+package it.pagopa.swclient.mil.wallet.client;
 
 import org.eclipse.microprofile.rest.client.annotation.ClientHeaderParam;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import io.smallrye.mutiny.Uni;
-import it.gov.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
+import it.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
+import jakarta.ws.rs.HeaderParam;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Reactive rest client for the REST APIs exposed by the PM-Wallet service

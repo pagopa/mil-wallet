@@ -1,29 +1,28 @@
-package it.gov.pagopa.swclient.mil.wallet.resource;
+package it.pagopa.swclient.mil.wallet.resource;
 
 import java.util.List;
-
-import javax.validation.Valid;
-import javax.ws.rs.BadRequestException;
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.InternalServerErrorException;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.reactive.ClientWebApplicationException;
 
 import io.quarkus.logging.Log;
 import io.smallrye.mutiny.Uni;
-import it.gov.pagopa.swclient.mil.bean.Errors;
-import it.gov.pagopa.swclient.mil.wallet.ErrorCode;
-import it.gov.pagopa.swclient.mil.wallet.bean.Outcome;
-import it.gov.pagopa.swclient.mil.wallet.bean.WalletHeaderParams;
-import it.gov.pagopa.swclient.mil.wallet.bean.WalletRequest;
-import it.gov.pagopa.swclient.mil.wallet.client.PmWalletService;
-import it.gov.pagopa.swclient.mil.wallet.client.SessionService;
-import it.gov.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
+import it.pagopa.swclient.mil.bean.Errors;
+import it.pagopa.swclient.mil.wallet.ErrorCode;
+import it.pagopa.swclient.mil.wallet.bean.Outcome;
+import it.pagopa.swclient.mil.wallet.bean.WalletHeaderParams;
+import it.pagopa.swclient.mil.wallet.bean.WalletRequest;
+import it.pagopa.swclient.mil.wallet.client.PmWalletService;
+import it.pagopa.swclient.mil.wallet.client.SessionService;
+import it.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
+import jakarta.validation.Valid;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.InternalServerErrorException;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("/")
 public class WalletResource {

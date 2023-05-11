@@ -1,16 +1,15 @@
-package it.gov.pagopa.swclient.mil.wallet.client;
-
-import javax.ws.rs.BeanParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+package it.pagopa.swclient.mil.wallet.client;
 
 import org.eclipse.microprofile.rest.client.annotation.ClientHeaderParam;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
 import io.smallrye.mutiny.Uni;
-import it.gov.pagopa.swclient.mil.bean.CommonHeader;
-import it.gov.pagopa.swclient.mil.wallet.client.bean.SessionResponse;
+import it.pagopa.swclient.mil.bean.CommonHeader;
+import it.pagopa.swclient.mil.wallet.client.bean.SessionResponse;
+import jakarta.ws.rs.BeanParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 
 /**
  * Reactive rest client for the REST APIs exposed by the Session service

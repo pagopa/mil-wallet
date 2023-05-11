@@ -1,4 +1,4 @@
-package it.gov.pagopa.swclient.mil.wallet.bean;
+package it.pagopa.swclient.mil.wallet.bean;
 
 public enum Outcome {
     OK,

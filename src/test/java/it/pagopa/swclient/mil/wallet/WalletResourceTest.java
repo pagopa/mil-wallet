@@ -1,11 +1,6 @@
-package it.gov.pagopa.swclient.mil.wallet;
+package it.pagopa.swclient.mil.wallet;
 
 import static io.restassured.RestAssured.given;
-
-import javax.ws.rs.InternalServerErrorException;
-//import io.restassured.response.Response;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.resteasy.reactive.ClientWebApplicationException;
@@ -19,13 +14,17 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.quarkus.test.junit.mockito.InjectMock;
 import io.restassured.http.ContentType;
 import io.smallrye.mutiny.Uni;
-import it.gov.pagopa.swclient.mil.bean.CommonHeader;
-import it.gov.pagopa.swclient.mil.wallet.bean.WalletRequest;
-import it.gov.pagopa.swclient.mil.wallet.client.PmWalletService;
-import it.gov.pagopa.swclient.mil.wallet.client.SessionService;
-import it.gov.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
-import it.gov.pagopa.swclient.mil.wallet.client.bean.SessionResponse;
-import it.gov.pagopa.swclient.mil.wallet.resource.WalletResource;
+import it.pagopa.swclient.mil.bean.CommonHeader;
+import it.pagopa.swclient.mil.wallet.ErrorCode;
+import it.pagopa.swclient.mil.wallet.bean.WalletRequest;
+import it.pagopa.swclient.mil.wallet.client.PmWalletService;
+import it.pagopa.swclient.mil.wallet.client.SessionService;
+import it.pagopa.swclient.mil.wallet.client.bean.PmWalletCardsRequest;
+import it.pagopa.swclient.mil.wallet.client.bean.SessionResponse;
+import it.pagopa.swclient.mil.wallet.resource.WalletResource;
+import jakarta.ws.rs.InternalServerErrorException;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @QuarkusTest
 @TestHTTPEndpoint(WalletResource.class)

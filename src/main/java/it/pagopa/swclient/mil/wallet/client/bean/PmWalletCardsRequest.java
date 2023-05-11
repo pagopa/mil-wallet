@@ -1,7 +1,7 @@
-package it.gov.pagopa.swclient.mil.wallet.client.bean;
+package it.pagopa.swclient.mil.wallet.client.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 public class PmWalletCardsRequest {
 	

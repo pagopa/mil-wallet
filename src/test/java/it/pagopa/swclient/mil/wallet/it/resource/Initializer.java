@@ -1,4 +1,4 @@
-package it.gov.pagopa.swclient.mil.wallet.it.resource;
+package it.pagopa.swclient.mil.wallet.it.resource;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -73,7 +73,7 @@ public class Initializer implements QuarkusTestResourceLifecycleManager,DevServi
 	                "quarkus.log.level", "DEBUG",
 	                "wallet.app-log-level", "DEBUG",
 	                "ocp-apim-subscription","bbc27c4c66a64effa786cf7e5dad3a6f",
-	                "quarkus.log.category.\"it.gov.pagopa.swclient.mil.wallet\".level", "DEBUG",
+	                "quarkus.log.category.\"it.pagopa.swclient.mil.wallet\".level", "DEBUG",
 	                "rest-client-session-api-url","http://" + WIREMOCK_NETWORK_ALIAS + ":" + 8080,
 	                "rest-client-pmwallet-api-url","http://" + WIREMOCK_NETWORK_ALIAS + ":" + 8080
 	        );

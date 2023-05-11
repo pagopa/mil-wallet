@@ -4,7 +4,7 @@
  * 12 dec 2022
  */
 
-package it.gov.pagopa.swclient.mil.wallet;
+package it.pagopa.swclient.mil.wallet;
 
 /**
  * 

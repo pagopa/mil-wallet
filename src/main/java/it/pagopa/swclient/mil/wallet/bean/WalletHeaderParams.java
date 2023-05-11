@@ -1,11 +1,10 @@
-package it.gov.pagopa.swclient.mil.wallet.bean;
+package it.pagopa.swclient.mil.wallet.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.ws.rs.HeaderParam;
-
-import it.gov.pagopa.swclient.mil.bean.CommonHeader;
-import it.gov.pagopa.swclient.mil.wallet.ErrorCode;
+import it.pagopa.swclient.mil.bean.CommonHeader;
+import it.pagopa.swclient.mil.wallet.ErrorCode;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.ws.rs.HeaderParam;
 
 public class WalletHeaderParams extends CommonHeader{
 
