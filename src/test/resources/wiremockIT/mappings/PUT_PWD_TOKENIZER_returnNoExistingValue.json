@@ -1,0 +1,20 @@
+{
+	"priority": 3,
+    "request": {
+        "method": "PUT",
+        "url": "/tokens",
+		"bodyPatterns" : [ {
+			  "equalToJson" : { "pii": "LLOZLN73D08A662A" }
+			} ]
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "token": "ZAA13243XXYAAA"
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

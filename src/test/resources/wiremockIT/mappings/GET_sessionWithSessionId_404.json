@@ -1,0 +1,14 @@
+{
+	"priority":2,
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/sessions/c0c444e6-97da-4848-b568-99fedccb642c"
+    },
+    "response": {
+        "status": 404,
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

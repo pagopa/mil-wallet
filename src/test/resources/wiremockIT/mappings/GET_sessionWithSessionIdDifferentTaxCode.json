@@ -1,0 +1,19 @@
+{
+	"priority":1,
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/sessions/b0b555e6-97da-4848-b568-99fedccb642c"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "outcome": "TERMS_AND_CONDITIONS_NOT_YET_ACCEPTED",
+					  "taxCode": "DDCZLN73D08A662B",
+					  "saveNewCards": true
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

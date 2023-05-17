@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "PATCH",
+        "urlPathPattern": "/sessions/(.*)"
+    },
+    "response": {
+        "status": 202,
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
+

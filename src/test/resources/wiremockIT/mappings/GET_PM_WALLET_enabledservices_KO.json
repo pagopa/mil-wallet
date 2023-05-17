@@ -1,0 +1,16 @@
+{
+	"priority": 1,
+    "request": {
+        "method": "GET",
+        "urlPathPattern": "/enabledServices/DDCZLN73D08A662B/saveNewCards"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+					  "saveNewCards": false
+					},
+	    "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

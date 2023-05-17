@@ -1,0 +1,1917 @@
+{
+	"info": {
+		"_postman_id": "136e5fec-313c-4895-8a92-e99204ece263",
+		"name": "2. Wallet Service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Validazione dati",
+			"item": [
+				{
+					"name": "PaymentMethod nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000001\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PaymentMethod non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000002\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E132\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"const schema = {",
+							"  \"properties\": {",
+							"    \"errors\": {",
+							"      \"type\": \"array\"",
+							"    }",
+							"  }",
+							"};",
+							"",
+							"pm.test('Schema is valid', function() {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Validazione headers",
+			"item": [
+				{
+					"name": "RequestId nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000001\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RequestId non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000002\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "131///00=",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version non valida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "pppL",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Version size non valida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000003\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "1.0.0-alpha-a.b-c-somethinglong+build.1-aef.1-its-okay78237829748274",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AcquirerId nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000005\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AcquirerId non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000006\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "ssk23",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Channel nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000007\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Channel non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000008\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "AATTMM",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MerchantId nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"00000000B\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MerchantId non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"00000000C\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "POS",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "234-234-234",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TerminalId nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"000000009\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TerminalId non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"00000000A\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "13---..99",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SessionId nullo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000003\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SessionId non valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000004\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "90807989èèè",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "3.Pre-save",
+			"item": [
+				{
+					"name": "happy path",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "{{session_id}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sessione inesistente",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000005\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "c0c444e6-97da-4848-b568-99fedccb642c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "T&C non accettate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000008\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "a2a000d6-97da-4848-b568-99fedccb633a",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Salvataggio delle nuove carte non attivo",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"003000009\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "a2f987e6-97da-4848-b568-99fedccb643a",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"517a4216840E461fB011036A0fd134E1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Errore dal PM-Wallet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});\r",
+									"pm.test(\"errors containes value\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.errors).to.contain(\"00300000A\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "RequestId",
+								"value": "{{guid}}",
+								"type": "text"
+							},
+							{
+								"key": "Version",
+								"value": "{{mil_wallet_api_version}}",
+								"type": "text"
+							},
+							{
+								"key": "AcquirerId",
+								"value": "{{acquirer_id}}",
+								"type": "text"
+							},
+							{
+								"key": "Channel",
+								"value": "{{channel}}",
+								"type": "text"
+							},
+							{
+								"key": "MerchantId",
+								"value": "{{merchant_id}}",
+								"type": "text"
+							},
+							{
+								"key": "TerminalId",
+								"value": "{{terminal_id}}",
+								"type": "text"
+							},
+							{
+								"key": "id",
+								"value": "e0e222e6-97da-4848-b568-99fedccb642c",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"panToken\": \"00001111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MIL_WALLET_BASE_URL}}/cards",
+							"host": [
+								"{{MIL_WALLET_BASE_URL}}"
+							],
+							"path": [
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{APIM_SUBSCRIPTION_KEY}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "guid",
+			"value": "d0d654e6-97da-4848-b568-99fedccb642b",
+			"type": "default"
+		},
+		{
+			"key": "mil_wallet_api_version",
+			"value": "1.0.0-alpha-a.b-c-somethinglong+build.1-aef.1-its-okay",
+			"type": "default"
+		},
+		{
+			"key": "channel",
+			"value": "POS",
+			"type": "default"
+		},
+		{
+			"key": "terminal_id",
+			"value": "0aB9wXyZ",
+			"type": "default"
+		},
+		{
+			"key": "merchant_id",
+			"value": "23533",
+			"type": "default"
+		},
+		{
+			"key": "session_id",
+			"value": "e0e222e6-97da-4848-b568-99fedccb642c",
+			"type": "default"
+		}
+	]
+}
