@@ -5,7 +5,7 @@
 	
 	<groupId>it.pagopa.swclient.mil</groupId>
 	<artifactId>wallet</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	
 	<description>Wallet Microservice for Multi-channel Integration Layer of SW Client Project</description>
 	
